@@ -7,6 +7,8 @@
 #include "ocx32nn.h"
 #include "ocx32nnDlg.h"
 #include "afxdialogex.h"
+#include <future>
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,6 +78,7 @@ BEGIN_MESSAGE_MAP(Cocx32nnDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_btnMobileFaceAuth, &Cocx32nnDlg::OnBnClickedbtnmobilefaceauth)
 	ON_BN_CLICKED(IDC_btnOTP, &Cocx32nnDlg::OnBnClickedbtnotp)
 	ON_BN_CLICKED(IDC_btnQR, &Cocx32nnDlg::OnBnClickedbtnqr)
+	ON_BN_CLICKED(IDC_LOGIN, &Cocx32nnDlg::OnBnClickedLogin)
 END_MESSAGE_MAP()
 
 
@@ -200,9 +203,24 @@ void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 {
 	TCHAR id[64] = { 0, };
 	GetDlgItemText(IDC_USERID, id, 64);
+	m_token = "";
 
-	CString result = m_ocx.PC_FaceAuth(id);
-	MessageBox(result, _T("테스트 프로그램"));
+	if (id[0] != _T('\0')) {
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::PC_FaceAuth, &m_ocx, id);
+		CString str = result.get();
+
+		CString target = L"0200.000&";
+		int pos = str.Find(target);
+
+		if (pos != -1) {
+			m_token = str.Mid(pos + target.GetLength());
+			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+		}
+		else {
+			m_token = str;
+			MessageBox(str, L"로그인 실패");
+		}
+	}
 }
 
 
@@ -210,9 +228,24 @@ void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 {
 	TCHAR id[64] = { 0, };
 	GetDlgItemText(IDC_USERID, id, 64);
+	m_token = "";
 
-	CString result = m_ocx.Mobile_FaceAuth(id);
-	MessageBox(result, _T("테스트 프로그램"));
+	if (id[0] != _T('\0')) {
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_FaceAuth, &m_ocx, id);
+		CString str = result.get();
+
+		CString target = L"0200.000&";
+		int pos = str.Find(target);
+
+		if (pos != -1) {
+			m_token = str.Mid(pos + target.GetLength());
+			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+		}
+		else {
+			m_token = str;
+			MessageBox(str, L"로그인 실패");
+		}
+	}
 }
 
 
@@ -220,9 +253,24 @@ void Cocx32nnDlg::OnBnClickedbtnotp()
 {
 	TCHAR id[64] = { 0, };
 	GetDlgItemText(IDC_USERID, id, 64);
+	m_token = "";
 
-	CString result = m_ocx.Mobile_OTP(id);
-	MessageBox(result, _T("테스트 프로그램"));
+	if (id[0] != _T('\0')) {
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_OTP, &m_ocx, id);
+		CString str = result.get();
+
+		CString target = L"0200.000&";
+		int pos = str.Find(target);
+
+		if (pos != -1) {
+			m_token = str.Mid(pos + target.GetLength());
+			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+		}
+		else {
+			m_token = str;
+			MessageBox(str, L"로그인 실패");
+		}
+	}
 }
 
 
@@ -230,7 +278,29 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 {
 	TCHAR id[64] = { 0, };
 	GetDlgItemText(IDC_USERID, id, 64);
+	m_token = "";
 
-	CString result = m_ocx.Mobile_QR(id);
-	MessageBox(result, _T("테스트 프로그램"));
+	if (id[0] != _T('\0')) {
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_QR, &m_ocx, id);
+		CString str = result.get();
+
+		CString target = L"0200.000&";
+		int pos = str.Find(target);
+
+		if (pos != -1) {
+			m_token = str.Mid(pos + target.GetLength());
+			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+		}
+		else {
+			m_token = str;
+			MessageBox(str, L"로그인 실패");
+		}
+
+	}
+}
+
+
+void Cocx32nnDlg::OnBnClickedLogin()
+{
+	MessageBox(m_token, L"토큰 확인");
 }

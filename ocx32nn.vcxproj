@@ -186,6 +186,7 @@
     <ClInclude Include="ButtonST.h" />
     <ClInclude Include="CAUTHOCXCTRL1.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="MKUse.h" />
     <ClInclude Include="ocx32nn.h" />
     <ClInclude Include="ocx32nnDlg.h" />
     <ClInclude Include="pch.h" />

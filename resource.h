@@ -13,7 +13,7 @@
 #define IDB_MobileQRAuth                134
 #define IDC_AUTHOCXCTRL1                1000
 #define IDC_USERID                      1001
-#define IDC_BUTTON1                     1002
+#define IDC_LOGIN                       1002
 #define IDC_btnPCFaceAuth               1003
 #define IDC_btnMobileFaceAuth           1004
 #define IDC_btnOTP                      1005

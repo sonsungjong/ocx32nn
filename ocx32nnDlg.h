@@ -12,7 +12,7 @@ class Cocx32nnDlg : public CDialogEx
 // 생성입니다.
 public:
 	Cocx32nnDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
-
+	CString m_token;
 	CButtonST m_imgFaceAuth;
 	CButtonST m_imgMobileFaceAuth;
 	CButtonST m_imgMobileOTPAuth;
@@ -45,4 +45,5 @@ public:
 	afx_msg void OnBnClickedbtnmobilefaceauth();
 	afx_msg void OnBnClickedbtnotp();
 	afx_msg void OnBnClickedbtnqr();
+	afx_msg void OnBnClickedLogin();
 };
