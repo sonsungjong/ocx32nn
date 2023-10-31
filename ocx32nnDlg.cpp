@@ -308,8 +308,9 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 	}
 }
 
-// 토큰 확인용 버튼
+// m_token 토큰 확인용 버튼
 void Cocx32nnDlg::OnBnClickedLogin()
 {
+	// 인증 완료시 m_token 에 UTF8 토큰이 저장되어있음
 	MessageBox(m_token, L"토큰 확인");
 }
