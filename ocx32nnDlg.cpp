@@ -206,9 +206,8 @@ void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		//std::future<CString> result = std::async(&CAUTHOCXCTRL1::PC_FaceAuth, &m_ocx, id);
-		//CString str = result.get();
-		CString str = m_ocx.PC_FaceAuth(id);
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::PC_FaceAuth, &m_ocx, id);
+		CString str = result.get();
 
 		CString target = L"0200.000&";
 		int pos = str.Find(target);
@@ -235,8 +234,6 @@ void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		//std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_FaceAuth, &m_ocx, id);
-		//CString str = result.get();
 		CString str = m_ocx.Mobile_FaceAuth(id);
 
 		CString target = L"0200.000&";
@@ -264,8 +261,6 @@ void Cocx32nnDlg::OnBnClickedbtnotp()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		//std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_OTP, &m_ocx, id);
-		//CString str = result.get();
 		CString str = m_ocx.Mobile_OTP(id);
 
 		CString target = L"0200.000&";
@@ -293,8 +288,6 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		//std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_QR, &m_ocx, id);
-		//CString str = result.get();
 		CString str = m_ocx.Mobile_QR(id);
 
 		CString target = L"0200.000&";
