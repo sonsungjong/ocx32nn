@@ -198,7 +198,7 @@ void Cocx32nnDlg::OnBnClickedCancel()
 	CDialogEx::OnCancel();
 }
 
-
+// PC얼굴인증 버튼
 void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 {
 	TCHAR id[64] = { 0, };
@@ -226,7 +226,7 @@ void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 	}
 }
 
-
+// 모바일 Push인증버튼
 void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 {
 	TCHAR id[64] = { 0, };
@@ -253,7 +253,7 @@ void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 	}
 }
 
-
+// MOTP 인증 버튼
 void Cocx32nnDlg::OnBnClickedbtnotp()
 {
 	TCHAR id[64] = { 0, };
@@ -280,7 +280,7 @@ void Cocx32nnDlg::OnBnClickedbtnotp()
 	}
 }
 
-
+// QR인증 버튼
 void Cocx32nnDlg::OnBnClickedbtnqr()
 {
 	TCHAR id[64] = { 0, };
@@ -308,7 +308,7 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 	}
 }
 
-
+// 토큰 확인용 버튼
 void Cocx32nnDlg::OnBnClickedLogin()
 {
 	MessageBox(m_token, L"토큰 확인");
