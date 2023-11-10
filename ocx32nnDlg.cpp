@@ -221,7 +221,7 @@ void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 		}
 		else {
 			m_token = str;
-			MessageBox(L"얼굴인증에 실패하였습니다.", L"로그인 실패");
+			MessageBox(str, L"로그인 실패");
 		}
 	}
 }
