@@ -17,7 +17,7 @@ public:
 	CLSID const& GetClsid()
 	{
 		static CLSID const clsid
-			= {0x4e3c47a7, 0x5307, 0x49a5, {0x94, 0xd1, 0xa4, 0xc0, 0x67, 0xb0, 0x50, 0x22}};
+			= {0x8c640a97, 0x5898, 0x4d28, {0x88, 0x48, 0x6c, 0xeb, 0xab, 0xcd, 0xa0, 0x20}};
 		return clsid;
 	}
 	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle,
@@ -41,7 +41,7 @@ public:
 
 // 작업
 public:
-// _DAuthOCX
+// _DauthOCX
 
 // 함수
 //
@@ -53,17 +53,17 @@ public:
 		return result;
 	}
 
+	void Init_AuthOCX()
+	{
+		InvokeHelper(0x2, DISPATCH_METHOD, VT_EMPTY, nullptr, nullptr);
+	}
+
 	CString PC_FaceAuth(LPCTSTR userID)
 	{
 		CString result;
 		static BYTE parms[] = VTS_BSTR;
-		InvokeHelper(0x2, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
+		InvokeHelper(0x3, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
 		return result;
-	}
-
-	void Init_AuthOCX()
-	{
-		InvokeHelper(0x3, DISPATCH_METHOD, VT_EMPTY, nullptr, nullptr);
 	}
 
 	CString Mobile_FaceAuth(LPCTSTR userID)
@@ -74,7 +74,7 @@ public:
 		return result;
 	}
 
-	CString Mobile_OTP(LPCTSTR userID)
+	CString CheckRegisteredFace(LPCTSTR userID)
 	{
 		CString result;
 		static BYTE parms[] = VTS_BSTR;
@@ -82,11 +82,43 @@ public:
 		return result;
 	}
 
-	CString Mobile_QR(LPCTSTR userID)
+	CString CheckRegisteredPattern(LPCTSTR userID)
 	{
 		CString result;
 		static BYTE parms[] = VTS_BSTR;
 		InvokeHelper(0x6, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
+		return result;
+	}
+
+	CString Mobile_OTP(LPCTSTR userID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_BSTR;
+		InvokeHelper(0x7, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
+		return result;
+	}
+
+	CString CheckRegisteredOtp(LPCTSTR userID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_BSTR;
+		InvokeHelper(0x8, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
+		return result;
+	}
+
+	CString Mobile_QR(LPCTSTR userID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_BSTR;
+		InvokeHelper(0x9, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
+		return result;
+	}
+
+	CString CheckRegisteredQr(LPCTSTR userID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_BSTR;
+		InvokeHelper(0xA, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, userID);
 		return result;
 	}
 

@@ -61,11 +61,12 @@ Cocx32nnDlg::Cocx32nnDlg(CWnd* pParent /*=nullptr*/)
 void Cocx32nnDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_AUTHOCXCTRL1, m_ocx);
+
 	DDX_Control(pDX, IDC_btnPCFaceAuth, m_imgFaceAuth);
 	DDX_Control(pDX, IDC_btnMobileFaceAuth, m_imgMobileFaceAuth);
 	DDX_Control(pDX, IDC_btnOTP, m_imgMobileOTPAuth);
 	DDX_Control(pDX, IDC_btnQR, m_imgMobileQRAuth);
+	DDX_Control(pDX, IDC_AUTHOCXCTRL1, m_ocx);
 }
 
 BEGIN_MESSAGE_MAP(Cocx32nnDlg, CDialogEx)
@@ -234,7 +235,8 @@ void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		CString str = m_ocx.Mobile_FaceAuth(id);
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_FaceAuth, &m_ocx, id);
+		CString str = result.get();
 
 		CString target = L"0200.000&";
 		int pos = str.Find(target);
@@ -288,7 +290,8 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 	m_token = "";
 
 	if (id[0] != _T('\0')) {
-		CString str = m_ocx.Mobile_QR(id);
+		std::future<CString> result = std::async(&CAUTHOCXCTRL1::Mobile_QR, &m_ocx, id);
+		CString str = result.get();
 
 		CString target = L"0200.000&";
 		int pos = str.Find(target);
@@ -312,5 +315,21 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 void Cocx32nnDlg::OnBnClickedLogin()
 {
 	// 인증 완료시 m_token 에 UTF8 토큰이 저장되어있음
+	TCHAR id[64] = { 0, };
+	GetDlgItemText(IDC_USERID, id, 64);
 	MessageBox(m_token, L"토큰 확인");
+
+	CString face_result = m_ocx.CheckRegisteredFace(id);
+	AfxMessageBox(face_result);
+
+	CString mobile_push_result = m_ocx.CheckRegisteredPattern(id);
+	AfxMessageBox(mobile_push_result);
+
+	CString otp_result = m_ocx.CheckRegisteredOtp(id);
+	AfxMessageBox(otp_result);
+
+
+	CString qr_result = m_ocx.CheckRegisteredQr(id);
+	AfxMessageBox(qr_result);
+	
 }

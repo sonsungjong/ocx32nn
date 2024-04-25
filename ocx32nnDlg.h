@@ -3,8 +3,9 @@
 //
 
 #pragma once
-#include "CAUTHOCXCTRL1.h"
+
 #include "ButtonST.h"
+#include "CAUTHOCXCTRL1.h"
 
 // Cocx32nnDlg 대화 상자
 class Cocx32nnDlg : public CDialogEx
@@ -40,10 +41,11 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
-	CAUTHOCXCTRL1 m_ocx;
+
 	afx_msg void OnBnClickedbtnpcfaceauth();
 	afx_msg void OnBnClickedbtnmobilefaceauth();
 	afx_msg void OnBnClickedbtnotp();
 	afx_msg void OnBnClickedbtnqr();
 	afx_msg void OnBnClickedLogin();
+	CAUTHOCXCTRL1 m_ocx;
 };
