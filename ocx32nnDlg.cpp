@@ -215,14 +215,14 @@ void Cocx32nnDlg::OnBnClickedbtnpcfaceauth()
 
 		if (pos != -1) {
 			m_token = str.Mid(pos + target.GetLength());
-			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+			MessageBox(L"로그인에 성공하였습니다.", L"[tester] 로그인 성공");
 		}
 		else if (str == "") {
 
 		}
 		else {
 			m_token = str;
-			MessageBox(str, L"로그인 실패");
+			MessageBox(str, L"[tester] 로그인 실패");
 		}
 	}
 }
@@ -243,14 +243,14 @@ void Cocx32nnDlg::OnBnClickedbtnmobilefaceauth()
 
 		if (pos != -1) {
 			m_token = str.Mid(pos + target.GetLength());
-			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+			MessageBox(L"로그인에 성공하였습니다.", L"[tester] 로그인 성공");
 		}
 		else if (str == "") {
 
 		}
 		else {
 			m_token = str;
-			MessageBox(str, L"로그인 실패");
+			MessageBox(str, L"[tester] 로그인 실패");
 		}
 	}
 }
@@ -270,14 +270,14 @@ void Cocx32nnDlg::OnBnClickedbtnotp()
 
 		if (pos != -1) {
 			m_token = str.Mid(pos + target.GetLength());
-			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+			MessageBox(L"로그인에 성공하였습니다.", L"[tester] 로그인 성공");
 		}
 		else if (str == "") {
 
 		}
 		else {
 			m_token = str;
-			MessageBox(str, L"로그인 실패");
+			MessageBox(str, L"[tester] 로그인 실패");
 		}
 	}
 }
@@ -298,14 +298,14 @@ void Cocx32nnDlg::OnBnClickedbtnqr()
 
 		if (pos != -1) {
 			m_token = str.Mid(pos + target.GetLength());
-			MessageBox(L"로그인에 성공하였습니다.", L"로그인 성공");
+			MessageBox(L"로그인에 성공하였습니다.", L"[tester] 로그인 성공");
 		}
 		else if (str == "") {
 
 		}
 		else {
 			m_token = str;
-			MessageBox(str, L"로그인 실패");
+			MessageBox(str, L"[tester] 로그인 실패");
 		}
 
 	}
@@ -317,19 +317,19 @@ void Cocx32nnDlg::OnBnClickedLogin()
 	// 인증 완료시 m_token 에 UTF8 토큰이 저장되어있음
 	TCHAR id[64] = { 0, };
 	GetDlgItemText(IDC_USERID, id, 64);
-	MessageBox(m_token, L"토큰 확인");
+	MessageBox(m_token, L"[tester] 토큰 확인");
 
-	CString face_result = m_ocx.CheckRegisteredFace(id);
-	AfxMessageBox(face_result);
+	//CString face_result = m_ocx.CheckRegisteredFace(id);
+	//AfxMessageBox(face_result);
 
-	CString mobile_push_result = m_ocx.CheckRegisteredPattern(id);
-	AfxMessageBox(mobile_push_result);
+	//CString mobile_push_result = m_ocx.CheckRegisteredPattern(id);
+	//AfxMessageBox(mobile_push_result);
 
-	CString otp_result = m_ocx.CheckRegisteredOtp(id);
-	AfxMessageBox(otp_result);
+	//CString otp_result = m_ocx.CheckRegisteredOtp(id);
+	//AfxMessageBox(otp_result);
 
 
-	CString qr_result = m_ocx.CheckRegisteredQr(id);
-	AfxMessageBox(qr_result);
+	//CString qr_result = m_ocx.CheckRegisteredQr(id);
+	//AfxMessageBox(qr_result);
 	
 }
